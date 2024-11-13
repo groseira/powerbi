@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power Automate</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .content h1 {
+            font-size: 36px;
+            color: #333333;
+            text-align: center;
+        }
+        .loading {
+            margin-top: 20px;
+            border: 8px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 8px solid #3498db;
+            width: 60px;
+            height: 60px;
+            animation: spin 2s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            fetch('https://prod-16.brazilsouth.logic.azure.com/workflows/5a96ea8a9ebd4540a8004dd4fc7d3324/triggers/manual/paths/invoke?api-version=2016-06-01&sp=/triggers/manual/run&sv=1.0&sig=gzBHUddVIAUHEBDsLdj-ixUhZdQcxAg127o6NFLRXes', {
+                method: 'GET',
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Requisição bem-sucedida:', data);
+                // Aqui você pode adicionar código para redirecionar ou exibir outra mensagem se necessário
+            })
+            .catch(error => {
+                console.error('Erro na requisição:', error);
+            });
+        };
+    </script>
+</head>
+<body>
+    <div class="content">
+        <h1>O Power Automate está sendo executado para esse fluxo,<br>peço que aguarde a resposta da solicitação via email</h1>
+    </div>
+    <div>
+        <div class="loading"></div>
+    </div>
+</body>
+</html>
